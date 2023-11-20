@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff; /* White background */
+}
+
+nav.nav {
+    background-color: #000000; /* Black navigation bar */
+    width: 100%;
+}
+
+nav.nav ul {
+    display: flex;
+}
+
+nav.nav ul li {
+    list-style: none;
+    padding: 15px 50px;
+}
+
+nav.nav ul li a {
+    color: #ffffff;
+    font-family: 'sans-serif';
+    text-decoration: none;
+}
+
+h1 {
+    color: #000000; /* Black header text */
+    font-size: 100px;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Lobster Two', cursive;
+}
+
+.contenedor {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+img {
+    width: 500px;
+}
+
+h2 {
+    text-align-last: center;
+    margin: auto;
+    background-color: #000000; 
+    color: #ffffff; 
+    width: 350px;
+    padding: 15px;
+    font-family: 'YourFont';
+}
+
+div.imagenes {
+    width: 70%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+div.imagenes img {
+    width: 100%;
+    height: 400px;
+    margin: 15px;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000000; 
+    color: #ffffff; 
+    padding: 20px 10px;
+}
+
+footer div.copy {
+    text-align: center;
+}
+
+footer div.copy p {
+    padding: 15px 5px;
+    font-size: 20px;
+}
+
+footer div.redes {
+    margin-top: 10px;
+}
+
+footer div.redes a {
+    color: #ffffff;
+    padding: 0px 12px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+footer div.redes a:hover {
+    color: #84af4b; 
+}
+
+div.noticias {
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+div.noticias div {
+    width: 300px;
+}
+
+div.noticias div div.desc {
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+div.noticias div img {
+    width: 300px;
+    position: relative;
+}
+
+div.noticias div h1 {
+    font-size: 20px;
+    color: #000000;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}

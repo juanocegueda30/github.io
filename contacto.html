@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="css/fontello.css">
+    <script type="module">
+        // Importa las funciones que necesitas de las bibliotecas SDK de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+
+        // Configuración de tu aplicación web en Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHwB1aKq2Jg8JMlej4_i63-JGCas_Z1c8",
+            authDomain: "pagina-cuci-tienda.firebaseapp.com",
+            projectId: "pagina-cuci-tienda",
+            storageBucket: "pagina-cuci-tienda.appspot.com",
+            messagingSenderId: "696098715767",
+            appId: "1:696098715767:web:e48e4ae3eb6b9e7cd6ae72",
+            measurementId: "G-8N146R90VW"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        // Función para manejar el envío del formulario
+        function handleSubmit(e) {
+            e.preventDefault();
+
+            const nombre = document.querySelector('[name="nombre"]').value;
+            const correo = document.querySelector('[name="correo"]').value;
+            const telefono = document.querySelector('[name="telefono"]').value;
+            const mensaje = document.querySelector('[name="mensaje"]').value;
+
+            const database = getDatabase(app);
+            const contactosRef = ref(database, 'contactos');
+            
+            // Guardar datos en Firebase
+            push(contactosRef, {
+                nombre: nombre,
+                correo: correo,
+                telefono: telefono,
+                mensaje: mensaje
+            }).then(() => {
+                // Después de guardar en Firebase, enviar a Formspree
+                const form = document.getElementById('miFormulario');
+                form.action = 'https://formspree.io/jubom302001@gmail.com';
+                form.method = 'POST';
+                
+                const emailInput = document.createElement('input');
+                emailInput.type = 'hidden';
+                emailInput.name = '_replyto';
+                emailInput.value = correo;
+                form.appendChild(emailInput);
+
+                form.submit();
+            });
+        }
+    </script>
+</head>
+<body>
+    <nav class="nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="noticias.html">Noticias</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>CONTACTO</h1>
+        <form id="miFormulario" onsubmit="handleSubmit(event)">
+            <input class="form-control mt-3" type="text" placeholder="Nombre" name="nombre">
+            <input class="form-control mt-3" type="email" placeholder="Correo" name="correo">
+            <input class="form-control mt-3" type="text" placeholder="Telefono" name="telefono">
+            <textarea class="form-control mt-3" cols="30" rows="10" placeholder="Ingrese su mensaje" name="mensaje"></textarea>
+            <button class="btn btn-primary mt-3" type="submit">Enviar</button>
+        </form>
+        <!-- Otro contenido de tu página -->
+    </div>
+
+    <footer>
+        <div class="copy">
+            <p>Todos los derechos reservados </p>
+            <p>&copy;Fashion</p>
+        </div>
+        <div class="redes">
+            <a href="https://es-la.facebook.com/" target="_blank">Facebook</a>
+            <a href="https://twitter.com/" target="_blank">X</a>
+            <a href="https://instagram.com/" target="_blank">Instagram</a>
+        </div>
+    </footer>
+</body>
+</html>
